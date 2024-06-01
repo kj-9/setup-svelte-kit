@@ -1,0 +1,31 @@
+#!/bin/sh
+# script/setup: Set up application for the first time after cloning, or set it
+#               back to the initial first unused state.
+
+set -e
+
+# get first argument from command line
+# if no argument is passed, default to 'static-site'
+# only accept "static-site" or "gh-pages" as argument
+if [ -z "$1" ]; then
+  APP_TYPE="static-site"
+elif [ "$1" = "static-site" ] || [ "$1" = "gh-pages" ]; then
+  APP_TYPE=$1
+else
+  echo "Invalid argument. Only 'static-site' or 'gh-pages' is allowed."
+  exit 1
+fi
+
+pnpm create svelte@latest ./
+
+pnpm i -D @sveltejs/adapter-static tailwindcss postcss autoprefixer
+pnpx tailwindcss init -p
+
+# copy
+cp -R scripts/templates/common/ .
+cp -R scripts/templates/$APP_TYPE/ .
+
+
+echo "==> App is now ready to go!"
+
+
