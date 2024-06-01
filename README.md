@@ -1,8 +1,11 @@
 # setup-svelte-kit
-setup script for svelte kit with static adapter, tailwind css
+template repository for setup svelte kit with static adapter, tailwind css
 
 ## Usage
-Clone this repository, and instal [pnpm](https://pnpm.io/installation) then run:
+
+Create a new repository with this template and install [pnpm](https://pnpm.io/installation).
+
+then just run script at `scripts/setup`
 
 ```bash
 chmod +x scripts/setup
